@@ -1,0 +1,24 @@
+
+~=cd %homepath%
+..=cd ..
+
+rmd=rmdir /s
+mkd=mkdir
+
+ll=dir /d /og
+ps=tasklist $*
+kill=taskkill /IM $*
+
+s=git s
+c=git c
+a=git a
+o=git o
+
+au=git au
+up=git up
+dn=git dn
+
+q=exit
+
+tt=tree /f /a
+clone=git clone
