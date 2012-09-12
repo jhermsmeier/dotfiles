@@ -2,23 +2,24 @@
 ~=cd %homepath%
 ..=cd ..
 
-rmd=rmdir /s $*
+rmd=rmdir /s /q $*
 mkd=mkdir $*
 
 ll=dir /d /og $*
-ps=tasklist $*
-kill=taskkill /IM $*
+tt=tree /f /a $*
+cp=copy /y /v $*
+
+q=exit
+
+clone=hub clone $*
+branch=git checkout $*
 
 s=git s $*
 c=git c $*
 a=git a $*
 o=git o $*
 
+wd=git wd $*
 au=git au $*
 up=git up $*
 dn=git dn $*
-
-q=exit
-
-tt=tree /f /a $*
-clone=git clone $*
