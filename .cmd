@@ -1,3 +1,3 @@
 @echo off
 cd %homepath%
-doskey /macrofile=%homepath%\.cmd
+doskey /macrofile=%homepath%\.doskeys
