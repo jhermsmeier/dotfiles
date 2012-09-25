@@ -1,10 +1,12 @@
 @echo off
+cd %appdata%
+cd "Sublime Text 2\Packages"
 echo -------------------------------------------------------
 
 for /d %%i in (*) do (
   IF EXIST "%%i\.git" (
     echo Updating "%%i":
-    cmd /c "cd C:\Users\Jonas\AppData\Roaming\Sublime Text 2\Packages\%%i && git dn -q"
+    cmd /c "cd %appdata%\Sublime Text 2\Packages\%%i && git dn -q"
     echo -------------------------------------------------------
   )
 )
