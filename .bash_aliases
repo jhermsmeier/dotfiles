@@ -18,6 +18,7 @@ else # OS X `ls`
 fi
 
 alias ls="ls ${colorflag}"
+alias grep="grep --color"
 
 # Easier directory listing
 alias lsd='ls -alF | grep "^d"'
