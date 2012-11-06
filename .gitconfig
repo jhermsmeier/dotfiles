@@ -1,6 +1,6 @@
 [user]
-	name = jhermsmeier
-	email = jhermsmeier@googlemail.com
+  name = jhermsmeier
+  email = jhermsmeier@googlemail.com
 [credential]
   helper = osxkeychain
 [github]
