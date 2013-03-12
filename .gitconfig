@@ -1,8 +1,6 @@
 [user]
-  name = jhermsmeier
-  email = jhermsmeier@googlemail.com
-[credential]
-  helper = osxkeychain
+	name = jhermsmeier
+	email = jhermsmeier@googlemail.com
 [github]
   user = jhermsmeier
 [core]
@@ -15,14 +13,21 @@
   ui = true
 [alias]
   
+  # days worked on it
+    days = !git log --date=short --format="%ci"|awk '{print $1}'|uniq|awk '{s++;print $0}END{print "\n",s,"days"}'
+  
   # find all TODOs and FIXes
-  todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+    todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
   
   # always sign off commits automagically (doesn't work)
   #  commit = commit -s
   
   # easy amend
     amend = commit --amend -C HEAD
+  
+  # don't blame people for whitespace changes
+  # and/or moved/copied lines (even across files)
+    blame = blame -w -M -C
   
   # easy HEAD reset
     unstage = reset HEAD
@@ -42,6 +47,7 @@
   
   # I forgot what this was about (-> looking up)
     au = add -u
+    ap = add -p
     wd = diff --word-diff
     
   # push/pull shorts
@@ -61,7 +67,7 @@
   # Simplest aliases
     a = add
     b = branch -v
-    c = commit -m
+    c = commit
     d = diff
     e = !git diff $1 | edit
     f = fetch
@@ -81,11 +87,15 @@
   # Forced push (after hard reset)
     override = push --force
   
+  # Create new HEAD from dir
+    split = filter-branch --prune-empty --subdirectory-filter
+  
   # Most used merge (recursive strat, using "theirs")
     theirs = merge -s recursive -X theirs --no-ff
     ours = merge -s recursive -X ours --no-ff
   
   # Do everything we can to synchronize all changes
+    sync = !git dn && git up
     sync-up = !git commit -am "$1" && git push
     sync-dn = !git pull && git submodule update --init --recursive
   
@@ -102,7 +112,7 @@
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
   
   # nice log views
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   # lc = log --pretty=format:\"%Cred%h%Creset %ad %s%d %Cgreen[%an] %cr%Creset\" --date=short
     lc = log --pretty=format:\"%Cred%h%Creset  %C(yellow)%ad%Creset  %s%d  %Cgreen[%an]%Creset\" --date=short
   
@@ -165,3 +175,6 @@
   
   # show a list of authors (ranked by number of commits)
     authors = shortlog -sne --no-merges -w1024,0,0
+  
+[credential]
+	helper = osxkeychain
