@@ -1,3 +1,4 @@
+
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -9,6 +10,7 @@ alias -- -="cd -"
 # Easier directory munching
 alias mkd='mkdir -p'
 alias rmd='rm -rf'
+alias cpd='cp -R'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -20,15 +22,15 @@ fi
 alias ls="ls ${colorflag}"
 alias grep="grep --color"
 
+# MAC OSX
+alias ls='gls --color=auto'
+
 # Easier directory listing
-alias lsd='ls -alF | grep "^d"'
-alias ll='ls -alF'
+alias ld='ls -halF | grep "^d"'
+alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
 alias tt='tree -L 1 -ahiFn'
-
-# Oh my Win32 CLI
-alias cls='clear'
 
 # be nice
 alias please=sudo
@@ -36,10 +38,10 @@ alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.c
 
 # `cat` with beautiful colors. requires Pygments installed.
 # -> sudo easy_install Pygments
-alias pyg='pygmentize -O style=monokai -f console256 -g'
+alias pyg='pygmentize -O style=manni -f console256 -g'
 
-# Git shortcut
-alias g=git
+# Run node with exposed GC and some optimizing flags
+alias gcnode="node --packed_arrays --expose-gc --max-old-space-size=8192 --max-new-space-size=2048"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -72,6 +74,12 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
+
+# Open with Sublime Text 2
+alias sublime='open -a Sublime\ Text\ 2'
+
+# Homebrew: update, upgrade & clean
+alias rebrew='brew update && brew upgrade && brew cleanup --force -s'
 
 # Volume
 alias stfu="osascript -e 'set volume output muted true'"
