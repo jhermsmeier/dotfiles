@@ -5,6 +5,11 @@ for file in ~/.bash_{extra,prompt,exports,aliases,functions}; do
 done
 unset file
 
+# PATH
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export PATH="$PATH:/usr/local/opt/ruby/bin"
+
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
