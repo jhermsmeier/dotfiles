@@ -23,8 +23,11 @@
 # Windows image file caches
 Thumbs.db 
 
-# Folder config file
+# Windows folder config file
 Desktop.ini
+
+# Mac OSX
+.DS_Store
 
 # Commit text file
 .commit
@@ -37,3 +40,4 @@ Desktop.ini
 
 # Wiki repositories in their git repo
 /*.wiki
+
