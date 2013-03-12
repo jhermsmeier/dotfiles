@@ -1,4 +1,9 @@
 
+# Win32 CLI 'clear' - the proper clear
+function cls() {
+  /usr/bin/osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "k" using command down'
+}
+
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
   local port="${1:-8000}"
@@ -20,7 +25,7 @@ function json() {
 }
 
 # take this repo and copy it to somewhere else minus the .git stuff.
-function gitexport(){
+function git-export(){
   mkdir -p "$1"
   git archive master | tar -x -C "$1"
 }
@@ -47,3 +52,17 @@ function extract() {
     echo "'$1' is not a valid file"
   fi
 }
+
+function rfc() {
+  pandoc -f html -t markdown "http://tools.ietf.org/html/rfc${1}"
+}
+
+function mkcd() {
+  mkd $1 && cd $1
+}
+
+# Colored SVN diff
+function svndiff () {
+  svn diff $@ | colordiff | less -R;
+}
+
