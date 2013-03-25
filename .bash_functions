@@ -54,7 +54,7 @@ function extract() {
 }
 
 function rfc() {
-  pandoc -f html -t markdown "http://tools.ietf.org/html/rfc${1}"
+  pandoc -f html -t markdown http://tools.ietf.org/html/rfc${1}
 }
 
 function mkcd() {
