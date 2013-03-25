@@ -1,6 +1,6 @@
 [user]
-	name = jhermsmeier
-	email = jhermsmeier@googlemail.com
+  name = jhermsmeier
+  email = jhermsmeier@googlemail.com
 [github]
   user = jhermsmeier
 [core]
@@ -89,6 +89,9 @@
   
   # Create new HEAD from dir
     split = filter-branch --prune-empty --subdirectory-filter
+  
+  # Create a new & empty branch
+    orphan = !git checkout --orphan "$1" && git rm -rfq ./*
   
   # Most used merge (recursive strat, using "theirs")
     theirs = merge -s recursive -X theirs --no-ff
