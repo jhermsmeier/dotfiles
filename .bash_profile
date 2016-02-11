@@ -5,10 +5,13 @@ for file in ~/.bash_{extra,prompt,exports,aliases,functions}; do
 done
 unset file
 
+# Prefer US English and use UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+
 # PATH
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-export PATH="$PATH:/usr/local/opt/ruby/bin"
 
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -22,13 +25,6 @@ shopt -s checkwinsize
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
-
-# init z   https://github.com/rupa/z
-. ~/Code/z/z.sh
-
-# Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh

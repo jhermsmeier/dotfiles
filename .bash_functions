@@ -1,18 +1,3 @@
-
-# Win32 CLI 'clear' - the proper clear
-function cls() {
-  /usr/bin/osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "k" using command down'
-}
-
-# Start an HTTP server from a directory, optionally specifying the port
-function server() {
-  local port="${1:-8000}"
-  open "http://localhost:${port}/"
-  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-  # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-}
-
 # Syntax-highlight JSON strings or files
 function json() {
   if [ -p /dev/stdin ]; then
@@ -60,9 +45,3 @@ function rfc() {
 function mkcd() {
   mkd $1 && cd $1
 }
-
-# Colored SVN diff
-function svndiff () {
-  svn diff $@ | colordiff | less -R;
-}
-

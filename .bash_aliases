@@ -1,4 +1,3 @@
-
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -74,9 +73,6 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
-
-# Open with Sublime Text 2
-alias sublime='open -a Sublime\ Text\ 2'
 
 # Homebrew: update, upgrade & clean
 alias rebrew='brew update && brew upgrade && brew cleanup --force -s'
