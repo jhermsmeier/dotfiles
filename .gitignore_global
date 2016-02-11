@@ -33,11 +33,10 @@ Desktop.ini
 .commit
 
 # npm packages folder
-/node_modules
+node_modules
 
 # SublimeText project files
-/*.sublime*
+*.sublime*
 
 # Wiki repositories in their git repo
-/*.wiki
-
+*.wiki
