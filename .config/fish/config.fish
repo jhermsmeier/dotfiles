@@ -57,11 +57,11 @@ alias cpd 'cp -R'
 alias grep "grep --color"
 
 # MAC OSX
-alias ls 'gls --color=auto -alFH'
+alias ls 'gls --color=auto --group-directories-first'
 
 # Easier directory listing
-alias ll 'ls -lFh'
-alias la 'ls -alFH'
+alias ll 'ls -LFlh'
+alias la 'ls -AFlh'
 alias l 'ls -CF'
 
 alias tree 'tree -aACF --dirsfirst'
