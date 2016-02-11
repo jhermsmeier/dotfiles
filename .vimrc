@@ -21,7 +21,6 @@ set incsearch " Highlight dynamically as pattern is typed
 set laststatus=2 " Always show status line
 set lazyredraw " Don't redraw when we don't have to
 set magic " Enable extended regexes
-set mouse=a " Enable mouse in all in all modes
 set noerrorbells " Disable error bells
 set nostartofline " Don't reset cursor to start of line when moving around
 set ofu=syntaxcomplete#Complete " Set omni-completion method
