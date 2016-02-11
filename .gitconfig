@@ -1,183 +1,283 @@
 [user]
-  name = jhermsmeier
-  email = jhermsmeier@googlemail.com
+  # name = Full Name
+  # email = someone@example.com
+  # username = someone
 [github]
-  user = jhermsmeier
+  # user = username
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = false
   safecrlf = false
+  pager = diff-highlight | diff-so-fancy | less -r
+[gc]
+  auto = 0
+[diff]
+  algorithm = patience
+[commit]
+  # gpgsign = true
+[merge]
+  stat = true
+[rerere]
+  enabled = false
+[rebase]
+  stat = true
 [push]
   default = current
+[fetch]
+  prune = true
+  fsckObjects = true
+[transfer]
+  fsckObjects = true
+[receive]
+  fsckObjects = true
+[remote]
+  fetch = +refs/branch-heads/*:refs/remotes/branch-heads/*
+  fetch = +refs/tags/*:refs/tags/*
 [color]
-  ui = true
-[alias]
-  
-  # days worked on it
-    days = !git log --date=short --format="%ci"|awk '{print $1}'|uniq|awk '{s++;print $0}END{print "\n",s,"days"}'
-  
-  # find all TODOs and FIXes
-    todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
-  
-  # always sign off commits automagically (doesn't work)
-  #  commit = commit -s
-  
-  # easy amend
-    amend = commit --amend -C HEAD
-  
-  # don't blame people for whitespace changes
-  # and/or moved/copied lines (even across files)
-    blame = blame -w -M -C
-  
-  # easy HEAD reset
-    unstage = reset HEAD
-    undo = reset --soft HEAD^
-  
-  # ... need a desc for this
-    count = shortlog -sn    
-  
-  # set someone else as author (e.g. for email patches)
-  # syntax: git credit "Author Name" mail@example.com
-    credit = commit --amend --author "$1 <$2>" -C HEAD
-  
-  # file io shorts
-    remove = rm
-    move = mv
-    rename = mv
-  
-  # I forgot what this was about (-> looking up)
-    au = add -u
-    ap = add -p
-    wd = diff --word-diff
-    
-  # push/pull shorts
-    up = push
-    dn = pull --rebase
-    ff = pull --ff-only
-    
-  # always annotate tags
-    tag = tag -a
-  # list all tags
-    tags = tag -n1 -l
-    
-  # stash shortcuts
-    save = stash save
-    pop = stash pop
-    
-  # Simplest aliases
-    a = add
-    b = branch -v
-    c = commit
-    d = diff
-    e = !git diff $1 | edit
-    f = fetch
-    g = grep
-    l = log
-    m = merge
-    o = checkout
-    p = pull
-    r = remote -v
-    s = status -sb
-    t = tag
-    w = whatchanged
-  
-  # Return to a given commit SHA
-    return = reset --hard
-  
-  # Forced push (after hard reset)
-    override = push --force
-  
-  # Create new HEAD from dir
-    split = filter-branch --prune-empty --subdirectory-filter
-  
-  # Create a new & empty branch
-    orphan = !git checkout --orphan "$1" && git rm -rfq ./*
-  
-  # Most used merge (recursive strat, using "theirs")
-    theirs = merge -s recursive -X theirs --no-ff
-    ours = merge -s recursive -X ours --no-ff
-  
-  # Do everything we can to synchronize all changes
-    sync = !git dn && git up
-    sync-up = !git commit -am "$1" && git push
-    sync-dn = !git pull && git submodule update --init --recursive
-  
-  # Squash commits (interactive rebase)
-    squash = rebase -i
-    
-  # When you're a little worried that the world is coming to an end 
-    panic = !tar cvf ../git-panic.tar *
-    export = archive -o ../git-export.zip
-    # export = checkout-index -f -a
-  
-  # from https://git.wiki.kernel.org/index.php/Aliases
-    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-  
-  # nice log views
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  # lc = log --pretty=format:\"%Cred%h%Creset %ad %s%d %Cgreen[%an] %cr%Creset\" --date=short
-    lc = log --pretty=format:\"%Cred%h%Creset  %C(yellow)%ad%Creset  %s%d  %Cgreen[%an]%Creset\" --date=short
-  
-  # show a log without the formating, occasionaly handy for c&p
-    rawlog = log --format=\"format:commit %H%nAuthor:%an%n%n%B%n\"
-  
-  # commits not pushed $1
-    unpushed = cherry -v
-  
-  # ignore local changes to a file
-    ignore = update-index --assume-unchanged
-  
-  # what got pushed to master in the last hour
-  # based on http://stackoverflow.com/questions/3357219/expose-the-date-a-commit-was-pushed-to-a-repository
-    justpushed = log origin/master@{\"1 hour ago\"}..origin/master --
-  
-  # log everything with $1 string in the diff
-    timegrep = log -S
-  
-  # like above, but show the diff
-    diffgrep = log -p -S
-  
-  # show a list of branches sorted by time of last commit
-    branches = "!f() { git for-each-ref --sort=committerdate refs/heads $1  --format=\"%(refname:short)\" ; }; g() { for C in $(f $1) ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; done; }; g "
-  
-  # show remote branches as well
-    all-branches = branches refs/remotes
-  
-  # show a list of every branch and show there latests commit, sorted by last commit
-    branchlog = "!sh -c 'for C in $(git for-each-ref --sort=committerdate refs/heads --format=\"%(refname:short)\") ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; git show  -s $C ; echo; done'"
-  
-  # url of origin
-    cloneurl = config --get remote.origin.url
-  
-  # show a list of files with bug fixes in them, sorted by popularity of occurance aka, list the buggy files
-  # FIXME: should probably make all the bug regex stuff scripts so it's easier to customize
-    buggyfiles = !"git log -M -C --format=\"format:%n\" --grep \"^[[:digit:]]\\+:\" --name-only | grep .  | sort | uniq -c | sort -n"
-  
-  # based on "buggyfiles" above and https://github.com/cypher/dotfiles/blob/master/bin/git-churn
-    churn = !"git log -M -C --name-only --format=\"format:%n\" | grep . | sort | uniq -c | sort -n" 
-  
-  # lists authors by number of commits
-    churners = shortlog -sn --
-    rank = shortlog -sn --no-merges
-  
-  # burners: who last touched the most code according to annotate
-    burners = "!f() { for i in $(git ls-files) ; do git annotate -e $i ; done }; g() { f | awk '{print $2 }' | perl -pe 's/\\(\\<(.+@.+)\\>/\\1/' ; }; g"
-  
-  # list authors by # of bug id's fixed
-    fixers = !"git log -M -C --format=\"format:%aN\" --grep \"^[[:digit:]]\\+:\" | sort | uniq -c | sort -n"
-  
-  # who reverts the most. Totally useless, but I like the name
-    poppers = !"git log -M -C --format=\"format:%aN\" --grep \"Revert\" | sort | uniq -c | sort -n"
-  
-  # from https://gist.github.com/492227
-    lost = !"git fsck | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\"); print}'"
-  
-  # show a list of tags sorted by when they were tagged
-    tagage = "!bash -c 'git for-each-ref --sort=taggerdate refs/tags --format=\"%(refname:short)\"'"
-  
-  # show a list of authors (ranked by number of commits)
-    authors = shortlog -sne --no-merges -w1024,0,0
-  
+  ui = always
+[color "diff"]
+  # meta = yellow bold
+  meta = white bold
+  commit = normal bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+  plain = normal
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
+[color "branch"]
+  current = green bold
+  local = green
+  remote = magenta
+  plain = normal
+[color "status"]
+  header = normal
+  added = yellow
+  updated = green
+  untracked = cyan
+  changed = red
+  nobranch = magenta
+[color "grep"]
+  match = normal
+[color "interactive"]
+  prompt = normal
+  header = normal
+  help = normal
+  error = normal
+[color "decorate"]
+  branch = green bold
+  remoteBranch = red bold
+  tag = yellow bold
+  stash = magenta bold
+  HEAD = cyan bold
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[alias]
+
+# days worked on it
+  days = !git log --date=short --format="%ci"|awk '{print $1}'|uniq|awk '{s++;print $0}END{print "\n",s,"days"}'
+
+# find all TODOs and FIXes
+  todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+
+# easy amend
+  amend = commit --amend -C HEAD
+
+# don't blame people for whitespace changes
+# and/or moved/copied lines (even across files)
+  blame = blame -w -M -C
+
+# auto prune on fetch
+  fetch = fetch --prune
+
+# easy HEAD reset
+  unstage = reset HEAD
+  undo = reset --soft HEAD^
+
+# ... need a desc for this
+  count = shortlog -sn
+
+# set someone else as author (e.g. for email patches)
+# syntax: git credit "Author Name" mail@example.com
+  credit = commit --amend --author "$1 <$2>" -C HEAD
+
+# file io shorts
+  remove = rm
+  move = mv
+  rename = mv
+
+# Concise branch listings
+# > list remote branches (which have local tracking)
+  bv = branch -v
+  br = branch -r
+  brv = branch -vvr
+# > list *all* remote branches
+  ba = branch -a
+  bra = branch -vvra
+# > branch creation
+  ob = checkout -b
+
+# Add all tracked files & commit
+  aux = !git add -u && git commit
+# Add all files, without untracked
+  au = add -u
+# Add partially, interactive
+  ap = add -p
+# Gives you a word diff
+  wd = diff --word-diff
+# Diff staged
+  ds = diff --staged
+  dst = diff --stat
+  dsh = diff --shortstat
+  dirstat = diff --dirstat=files
+# Aggressive Garbage Collection
+  gca = gc --aggressive
+
+# push/pull shorts
+  up = push --follow-tags --prune
+  dn = pull --rebase --stat --prune
+  dna = pull --rebase --stat --all --prune
+  ff = pull --ff-only --stat --all --prune
+
+# always annotate tags
+  tag = tag -a
+# list all tags
+  tags = tag -n1 -l
+
+# stash shortcuts
+  list = stash list
+  save = stash save -u
+  pop = stash pop
+  drop = stash drop
+
+# Simplest aliases
+  a = add
+  b = branch
+  c = commit
+  d = diff
+  e = !git diff $1 | edit
+  f = fetch
+  g = grep
+  h = help
+  l = log
+  m = merge --no-ff
+  o = checkout
+  p = pull --stat
+  r = remote -v
+  s = status -sb
+  t = tag -am
+  w = whatchanged
+
+# Return to a given commit SHA
+  return = reset --hard
+
+# Forced push (after hard reset)
+  override = push --force
+
+# Create new HEAD from dir
+  split = filter-branch --prune-empty --subdirectory-filter
+
+# Create a new & empty branch
+  orphan = !git checkout --orphan "$1" && git rm -rfq ./*
+
+# Most used merge (recursive strat, using "theirs")
+  theirs = merge -s recursive -X theirs --no-ff
+  ours = merge -s recursive -X ours --no-ff
+
+# Do everything we can to synchronize all changes
+  sync = !git dn && git up
+  sync-up = !git commit -am "$1" && git push
+  sync-dn = !git pull && git submodule update --init --recursive
+
+# Squash commits (interactive rebase)
+  squash = rebase --autostash -i
+
+# When you're a little worried that the world is coming to an end
+  panic = !tar cvf ../git-panic.tar *
+  export = archive -o ../git-export.zip
+  # export = checkout-index -f -a
+
+# from https://git.wiki.kernel.org/index.php/Aliases
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+# fancy graph log
+  gl = log --graph --abbrev-commit --date=relative --pretty=format:'%w(80,2,10)%C(red)%h%C(yellow)%d%C(reset) %C(251)%s%n%C(reset)%C(235)%w(0)└─%C(reset) %C(240)%an <%ae>%C(reset) %C(green)(%ad)%C(reset)'
+# nice log views
+  lg = log --graph --abbrev-commit --date=relative --pretty=format:'%C(red)%h%Creset%C(yellow)%d%Creset - %s %C(green)(%cr)%Creset %C(bold blue)[%an]%Creset'
+# lc = log --pretty=format:\"%Cred%h%Creset %ad %s%d %Cgreen[%an] %cr%Creset\" --date=short
+# lc = log --pretty=format:\"%Cred%h%Creset  %C(yellow)%ad%Creset  %s%d  %Cgreen[%an]%Creset\" --date=short
+  lc = log --abbrev-commit --date=relative --pretty=format:'%w(76,2,10)%C(red)%h%C(reset) %s%n %C(234)%w(0)└─%C(reset) %C(237)%an <%ae>%C(reset) %C(green)(%ad)%C(reset)'
+# changelog
+  changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
+  
+# see what you did this day
+  today = log --decorate --graph --since=midnight --author='$1' --oneline
+
+# show a log without the formating, occasionaly handy for c&p
+  rawlog = log --format=\"format:commit %H%nAuthor:%an%n%n%B%n\"
+
+# commits not pushed $1
+  unpushed = cherry -v
+
+# ignore local changes to a file
+  ignore = update-index --assume-unchanged
+
+# what got pushed to master in the last hour
+# based on http://stackoverflow.com/questions/3357219/expose-the-date-a-commit-was-pushed-to-a-repository
+  justpushed = log origin/master@{\"1 hour ago\"}..origin/master --
+
+# log everything with $1 string in the diff
+  timegrep = log -S
+
+# like above, but show the diff
+  diffgrep = log -p -S
+
+# prune all merged branches
+  bp = !"git branch --merged master | grep -v 'master$' | xargs git branch -d"
+  bpd = !"git branch --merged develop | grep -v 'develop$' | xargs git branch -d"
+
+# show a list of branches sorted by time of last commit
+  branches = "!f() { git for-each-ref --sort=committerdate refs/heads $1  --format=\"%(refname:short)\" ; }; g() { for C in $(f $1) ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; done; }; g "
+
+# show a list of every branch and show there latests commit, sorted by last commit
+  branchlog = "!sh -c 'for C in $(git for-each-ref --sort=committerdate refs/heads --format=\"%(refname:short)\") ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; git show  -s $C ; echo; done'"
+
+# url of origin
+  cloneurl = config --get remote.origin.url
+
+# show a list of files with bug fixes in them, sorted by popularity of occurance aka, list the buggy files
+# FIXME: should probably make all the bug regex stuff scripts so it's easier to customize
+  buggyfiles = !"git log -M -C --format=\"format:%n\" --grep \"^[[:digit:]]\\+:\" --name-only | grep .  | sort | uniq -c | sort -n"
+
+# based on "buggyfiles" above and https://github.com/cypher/dotfiles/blob/master/bin/git-churn
+  churn = !"git log -M -C --name-only --format=\"format:%n\" | grep . | sort | uniq -c | sort -n"
+
+# lists authors by number of commits
+  churners = shortlog -sn --
+  rank = shortlog -sn --no-merges
+
+# burners: who last touched the most code according to annotate
+  burners = "!f() { for i in $(git ls-files) ; do git annotate -e $i ; done }; g() { f | awk '{print $2 }' | perl -pe 's/\\(\\<(.+@.+)\\>/\\1/' ; }; g"
+
+# list authors by # of bug id's fixed
+  fixers = !"git log -M -C --format=\"format:%aN\" --grep \"^[[:digit:]]\\+:\" | sort | uniq -c | sort -n"
+
+# who reverts the most. Totally useless, but I like the name
+  poppers = !"git log -M -C --format=\"format:%aN\" --grep \"Revert\" | sort | uniq -c | sort -n"
+
+# from https://gist.github.com/492227
+  lost = !"git fsck | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\"); print}'"
+
+# show a list of tags sorted by when they were tagged
+  tagage = "!bash -c 'git for-each-ref --sort=taggerdate refs/tags --format=\"%(refname:short)\"'"
+
+# show a list of authors (ranked by number of commits)
+  authors = shortlog -sne --no-merges -w1024,0,0
