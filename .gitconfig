@@ -8,9 +8,10 @@
   excludesfile = ~/.gitignore_global
   autocrlf = false
   safecrlf = false
-  pager = diff-highlight | diff-so-fancy | less -r
-[gc]
-  auto = 0
+  pager = less --tabs=2 -RFX
+[pager]
+  diff = diff-so-fancy | less --tabs=2 -RFX
+  show = diff-so-fancy | less --tabs=2 -RFX
 [diff]
   algorithm = patience
 [commit]
@@ -42,7 +43,7 @@
   frag = magenta bold
   old = red bold
   new = green bold
-  whitespace = red reverse
+  whitespace = "233 reverse"
   plain = normal
 [color "diff-highlight"]
   oldNormal = red bold
@@ -76,13 +77,15 @@
   HEAD = cyan bold
 [credential]
   helper = osxkeychain
+[gc]
+  auto = 0
 [filter "media"]
   clean = git-media-clean %f
   smudge = git-media-smudge %f
 [alias]
 
 # days worked on it
-  days = !git log --date=short --format="%ci"|awk '{print $1}'|uniq|awk '{s++;print $0}END{print "\n",s,"days"}'
+  days = "!git log --date=short --format='%ci'|awk '{print $1}'|uniq|awk '{s++}END{print \"\\\n\",s,\"days\"}'"
 
 # find all TODOs and FIXes
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
@@ -146,6 +149,11 @@
   dna = pull --rebase --stat --all --prune
   ff = pull --ff-only --stat --all --prune
 
+# checkout a pull request
+  pr = !git fetch origin pull/$1/head:pr-$1 && echo
+# checkout pull requests from a given remote
+  rpr = !git fetch "$1" "pull/$2/head:pr-$2" && echo
+
 # always annotate tags
   tag = tag -a
 # list all tags
@@ -174,6 +182,11 @@
   s = status -sb
   t = tag -am
   w = whatchanged
+
+# Rebase
+  ra = rebase --abort
+  rc = rebase --continue
+  rs = rebase --skip
 
 # Return to a given commit SHA
   return = reset --hard
@@ -219,7 +232,7 @@
   changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
   
 # see what you did this day
-  today = log --decorate --graph --since=midnight --author='$1' --oneline
+  today = log --decorate --graph --since=midnight --author="$1" --oneline
 
 # show a log without the formating, occasionaly handy for c&p
   rawlog = log --format=\"format:commit %H%nAuthor:%an%n%n%B%n\"
@@ -241,8 +254,8 @@
   diffgrep = log -p -S
 
 # prune all merged branches
-  bp = !"git branch --merged master | grep -v 'master$' | xargs git branch -d"
-  bpd = !"git branch --merged develop | grep -v 'develop$' | xargs git branch -d"
+  bp = !"git branch --no-color --merged master | grep -v 'master$' | xargs git branch -d"
+  bpd = !"git branch --no-color --merged develop | grep -v 'develop$' | xargs git branch -d"
 
 # show a list of branches sorted by time of last commit
   branches = "!f() { git for-each-ref --sort=committerdate refs/heads $1  --format=\"%(refname:short)\" ; }; g() { for C in $(f $1) ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; done; }; g "
