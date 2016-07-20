@@ -1,21 +1,27 @@
 [user]
-  # name = Full Name
-  # email = someone@example.com
-  # username = someone
+  name = Full Name
+  email = user@example.com
+  username = username
 [github]
-  # user = username
+  user = username
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = false
   safecrlf = false
   pager = less --tabs=2 -RFX
+[gpg]
+  program = gpg2
+[commit]
+  gpgsign = true
+  verbose = true
 [pager]
   diff = diff-so-fancy | less --tabs=2 -RFX
   show = diff-so-fancy | less --tabs=2 -RFX
 [diff]
   algorithm = patience
-[commit]
-  # gpgsign = true
+[diff-so-fancy]
+  stripLeadingSymbols = false
+  markEmptyLines = false
 [merge]
   stat = true
 [rerere]
@@ -85,7 +91,7 @@
 [alias]
 
 # days worked on it
-  days = "!git log --date=short --format='%ci'|awk '{print $1}'|uniq|awk '{s++}END{print \"\\\n\",s,\"days\"}'"
+  days = "!git log --date=short --format='%ci'|awk '{print $1}'|uniq|awk '{s++}END{print \"\\n\",s,\"days\"}'"
 
 # find all TODOs and FIXes
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
@@ -116,6 +122,8 @@
   move = mv
   rename = mv
 
+# Interactive branch selection
+  bs = branch-select
 # Concise branch listings
 # > list remote branches (which have local tracking)
   bv = branch -v
@@ -126,6 +134,8 @@
   bra = branch -vvra
 # > branch creation
   ob = checkout -b
+# > branch deletion
+  bd = branch -d
 
 # Add all tracked files & commit
   aux = !git add -u && git commit
@@ -161,7 +171,7 @@
 
 # stash shortcuts
   list = stash list
-  save = stash save -u
+  save = stash save -k -u
   pop = stash pop
   drop = stash drop
 
@@ -218,7 +228,7 @@
   # export = checkout-index -f -a
 
 # from https://git.wiki.kernel.org/index.php/Aliases
-  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\" --author=\"$1\"' -"
   whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 
 # fancy graph log
@@ -232,7 +242,7 @@
   changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
   
 # see what you did this day
-  today = log --decorate --graph --since=midnight --author="$1" --oneline
+  today = log --decorate --graph --since=midnight --author='Jonas Hermsmeier' --oneline
 
 # show a log without the formating, occasionaly handy for c&p
   rawlog = log --format=\"format:commit %H%nAuthor:%an%n%n%B%n\"
@@ -293,4 +303,4 @@
   tagage = "!bash -c 'git for-each-ref --sort=taggerdate refs/tags --format=\"%(refname:short)\"'"
 
 # show a list of authors (ranked by number of commits)
-  authors = shortlog -sne --no-merges -w1024,0,0
+  authors = !"git shortlog -sne --no-merges -w1024,0,0 | cut -c 8-"
