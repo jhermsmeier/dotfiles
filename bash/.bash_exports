@@ -1,0 +1,11 @@
+# GNU Coreutils
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
+# Prefer US English and use UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+
+export HOMEBREW_GITHUB_API_TOKEN=""
+export HOMEBREW_MAKE_JOBS=1
+export HOMEBREW_VERBOSE=1
