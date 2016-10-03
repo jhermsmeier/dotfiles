@@ -1,0 +1,4 @@
+---
+BUNDLE_IGNORE_MESSAGES__HTTPARTY: 'true'
+BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries"
+BUNDLE_RETRY: 3

@@ -5,14 +5,6 @@ for file in ~/.bash_{extra,prompt,exports,aliases,functions}; do
 done
 unset file
 
-# Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
-
-# PATH
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
@@ -32,3 +24,10 @@ shopt -s nocaseglob
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
+
+# Initialize rbenv (ruby env version manager)
+eval "$(rbenv init -)"
+
+# eval $(ssh-agent)
+# source .ssh/agent.sh
+keychain

@@ -22,14 +22,18 @@ alias ls="ls ${colorflag}"
 alias grep="grep --color"
 
 # MAC OSX
-alias ls='gls --color=auto'
+# alias ls='gls --color=auto'
 
 # Easier directory listing
-alias ld='ls -halF | grep "^d"'
-alias ll='ls -halF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -halFX'
+alias la='ls -AX'
+alias l='ls -CFX'
+
+alias tree='tree -aACF --dirsfirst'
 alias tt='tree -L 1 -ahiFn'
+
+# Make make faster
+alias make='make -j 4'
 
 # be nice
 alias please=sudo
@@ -68,11 +72,16 @@ alias fs="stat -f \"%z bytes\""
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+alias cleantmp="sudo rm -rfv ~/tmp/*"
+alias clean="sudo rm -rfv /Library/Caches/*; rm -rfv ~/Library/Caches/*; rm -rfv /.Spotlight-V100/; rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
+
+# Open with Sublime Text 2
+alias sublime='open -a Sublime\ Text\ 2'
 
 # Homebrew: update, upgrade & clean
 alias rebrew='brew update && brew upgrade && brew cleanup --force -s'
