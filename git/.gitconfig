@@ -1,5 +1,5 @@
 [user]
-  name = Full Name
+  name = User Name
   email = user@example.com
   username = username
 [github]
@@ -192,6 +192,9 @@
   s = status -sb
   t = tag -am
   w = whatchanged
+
+# Cherry-pick
+  cp = cherry-pick
 
 # Rebase
   ra = rebase --abort
