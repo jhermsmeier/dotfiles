@@ -116,7 +116,7 @@ alias cleantmp "sudo rm -rfv ~/tmp/*"
 alias clean "sudo rm -rfv /Library/Caches/*; sudo rm -rfv ~/Library/Caches/*; sudo rm -rfv /.Spotlight-V100/; sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
 
 # Homebrew: update, upgrade & clean
-alias rebrew 'brew update; brew upgrade; brew cleanup --force -s'
+alias rebrew 'brew update; brew upgrade; brew cleanup --prune=0 -s'
 
 # npm
 alias nls "npm ls --depth 0"
