@@ -1,11 +1,11 @@
-# dotfiles
+# Machine
 
 Machine setup & configuration file storage
 
 ## Installation
 
 ```sh
-$ git clone https://github.com/jhermsmeier/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/jhermsmeier/machine.git ~/.dotfiles
 ```
 
 ## Usage
