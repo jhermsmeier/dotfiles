@@ -10,7 +10,7 @@ HOMEBREW_NO_ANALYTICS=1
 # Make sure we have access to /usr/local
 # (`n` (node version mgr) might not work otherwise)
 mkdir /usr/local/
-sudo chown -R (whoami):admin /usr/local/
+sudo chown -R $(whoami):admin /usr/local/
 
 # Install or update brew
 if command -v brew >/dev/null 2>&1; then
