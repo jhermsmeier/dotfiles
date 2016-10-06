@@ -13,9 +13,13 @@ set fish_greeting ""
 # Enable detailed git status in prompt
 set -x __fish_git_prompt_show_informative_status 'true'
 set -x __fish_git_prompt_showupstream 'true'
+set -x __fish_git_prompt_char_cleanstate 'ø'
 set -x __fish_git_prompt_char_dirtystate '*'
 set -x __fish_git_prompt_char_invalidstate '#'
 set -x __fish_git_prompt_char_stagedstate '+'
+set -x __fish_git_prompt_char_upstream_prefix '|'
+set -x __fish_git_prompt_char_upstream_ahead '˄'
+set -x __fish_git_prompt_char_upstream_behind '˅'
 # set -x __fish_git_prompt_showcolorhints 'true'
 set -x __fish_git_prompt_color 'yellow'
 # set -x __fish_git_prompt_color_branch 'yellow'
@@ -26,6 +30,10 @@ set -x __fish_git_prompt_color 'yellow'
 # GNU Core utils
 set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 set MANPATH "/usr/local/opt/coreutils/libexec/gnuman" $MANPATH
+
+# Support building against Homebrewed OpenSSL
+# set -x LDFLAGS "-L/usr/local/opt/openssl/lib"
+# set -x CPPFLAGS "-I/usr/local/opt/openssl/include"
 
 # Lib path
 # set -g -x LIBRARY_PATH $LIBRARY_PATH "/usr/local/lib"
