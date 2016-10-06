@@ -15,7 +15,7 @@ STATUS=0
 for file in ./*; do
   if [ -d "$file" ]; then
     echo "Stowing $(basename $file)..."
-    stow --restow --ignore='.DS_Store' --target=$HOME $(basename $file)
+    stow -vvv --restow --ignore='.DS_Store' --target=$HOME $(basename $file)
     EXIT_CODE=$?
     if [[ $EXIT_CODE -ne 0 ]]; then
       STATUS=$EXIT_CODE
