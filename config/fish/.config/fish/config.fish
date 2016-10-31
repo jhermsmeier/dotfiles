@@ -27,6 +27,9 @@ set -x __fish_git_prompt_color 'yellow'
 # eval (docker-machine env --shell fish default)
 # eval (gdircolors -c ~/.dircolors)
 
+# Homebrew sbin
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+
 # GNU Core utils
 set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 set MANPATH "/usr/local/opt/coreutils/libexec/gnuman" $MANPATH
