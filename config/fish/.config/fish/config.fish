@@ -124,7 +124,7 @@ alias saver 'open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Re
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
 alias cleantmp "sudo rm -rfv ~/tmp/*"
-alias clean "sudo rm -rfv /Library/Caches/*; sudo rm -rfv ~/Library/Caches/*; sudo rm -rfv /.Spotlight-V100/; sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
+alias clean "sudo rm -rfv /Library/Caches/*; sudo rm -rfv ~/Library/Caches/*; sudo rm -rfv /.Spotlight-V100/*; sudo rm -rfv /Volumes/*/.Trashes/*; sudo rm -rfv ~/.Trash/*"
 
 # Homebrew: update, upgrade & clean
 alias rebrew 'brew update; brew upgrade; brew cleanup --prune=0 -s'
