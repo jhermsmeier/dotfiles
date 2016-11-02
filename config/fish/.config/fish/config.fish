@@ -32,7 +32,7 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # GNU Core utils
 set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
-set MANPATH "/usr/local/opt/coreutils/libexec/gnuman" $MANPATH
+# set MANPATH "/usr/local/opt/coreutils/libexec/gnuman" $MANPATH
 
 # Support building against Homebrewed OpenSSL
 # set -x LDFLAGS "-L/usr/local/opt/openssl/lib"
@@ -74,6 +74,9 @@ alias ... "cd ../.."
 alias .... "cd ../../.."
 alias ..... "cd ../../../.."
 # alias "--" "cd -"
+
+# Never regret again
+# alias rm 'trash'
 
 # Easier directory munching
 alias mkd 'mkdir -p'
