@@ -10,6 +10,29 @@ end
 # implement the fish_greeting as a function
 set fish_greeting ""
 
+# Fix for color theme resetting to something weird
+# after restarts in fish 2.4.0
+set -U fish_color_autosuggestion 555
+set -U fish_color_command 005fd7
+set -U fish_color_comment 990000
+set -U fish_color_cwd green
+set -U fish_color_cwd_root red
+set -U fish_color_end 009900
+set -U fish_color_error ff0000
+set -U fish_color_escape 'bryellow'  '--bold'
+set -U fish_color_history_current --bold
+set -U fish_color_host normal
+set -U fish_color_match --background=brblue
+set -U fish_color_normal normal
+set -U fish_color_operator bryellow
+set -U fish_color_param 00afff
+set -U fish_color_quote 999900
+set -U fish_color_redirection 00afff
+set -U fish_color_search_match 'bryellow'  '--background=brblack'
+set -U fish_color_selection 'white'  '--bold'  '--background=brblack'
+set -U fish_color_user brgreen
+set -U fish_color_valid_path --underline 
+
 # Enable detailed git status in prompt
 set -x __fish_git_prompt_show_informative_status 'true'
 set -x __fish_git_prompt_showupstream 'true'
