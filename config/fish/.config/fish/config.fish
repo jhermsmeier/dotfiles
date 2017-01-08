@@ -65,7 +65,7 @@ set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 # set -g -x LIBRARY_PATH $LIBRARY_PATH "/usr/local/lib"
 
 # Don’t clear the screen after quitting a manual page
-set -g -x MANPAGER "less -RFX"
+set -g -x MANPAGER "less -RKX"
 
 # Prefer US English and use UTF-8
 set -g -x LC_ALL "en_US.UTF-8"
@@ -150,10 +150,7 @@ alias saver 'open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Re
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
 alias cleantmp "sudo rm -rfv ~/tmp/*"
-alias clean "sudo rm -rfv /Library/Caches/*; sudo rm -rfv ~/Library/Caches/*; sudo rm -rfv /.Spotlight-V100/*; sudo rm -rfv /Volumes/*/.Trashes/*; sudo rm -rfv ~/.Trash/*"
-
-# Homebrew: update, upgrade & clean
-alias rebrew 'brew update; brew upgrade; brew cleanup --prune=0 -s'
+alias clean "sudo rm -rfv /Library/Caches/*; sudo rm -rfv ~/Library/Caches/*; sudo rm -rfv /Volumes/*/.Trashes/*; sudo rm -rfv ~/.Trash/*"
 
 # npm
 alias nls "npm ls --depth 0"
