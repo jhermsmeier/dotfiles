@@ -24,6 +24,7 @@
   markEmptyLines = false
 [merge]
   stat = true
+	# conflictstyle = diff3
 [rerere]
   enabled = false
 [rebase]
@@ -88,6 +89,8 @@
 [filter "media"]
   clean = git-media-clean %f
   smudge = git-media-smudge %f
+[url "git@github.com:"]
+  insteadOf = github:
 [alias]
 
 # days worked on it
@@ -167,7 +170,9 @@
 # always annotate tags
   tag = tag -a
 # list all tags
-  tags = tag -n1 -l
+  tags = tag -n1 -l --sort="v:refname"
+# list all tags as versions
+  versions = tag -l --sort="v:refname"
 
 # stash shortcuts
   list = stash list
@@ -242,7 +247,8 @@
 # lc = log --pretty=format:\"%Cred%h%Creset  %C(yellow)%ad%Creset  %s%d  %Cgreen[%an]%Creset\" --date=short
   lc = log --abbrev-commit --date=relative --pretty=format:'%w(76,2,10)%C(red)%h%C(reset) %s%n %C(234)%w(0)└─%C(reset) %C(237)%an <%ae>%C(reset) %C(green)(%ad)%C(reset)'
 # changelog
-  changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
+  # changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
+  changelog = log --abbrev-commit --pretty=format:'* %H - %s'
   
 # see what you did this day
   today = log --decorate --graph --since=midnight --author='Jonas Hermsmeier' --oneline
