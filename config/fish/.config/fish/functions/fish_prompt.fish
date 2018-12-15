@@ -20,16 +20,6 @@ function fish_prompt --description 'Write out the prompt'
     echo -n -s " " (set_color blue) "(python:" (basename "$VIRTUAL_ENV") ")" (set_color normal) ""
 	end
 	
-	set -l ruby_version (rbenv version-name 2>&1 /dev/null)
-	set -l ruby_status $status
-	if test $ruby_status -eq 0
-    switch $ruby_version;
-      case 'system';
-      case '*';
-      	echo -n -s " " (set_color red) "(ruby:" $ruby_version ")" (set_color normal) ""
-    end
-	end
-	
 	set_color normal
 	echo -n -s (__fish_git_prompt) " "
 	set_color normal
