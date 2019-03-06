@@ -10,7 +10,7 @@
   safecrlf = false
   pager = less --tabs=2 -RFX
 [gpg]
-  program = gpg2
+  program = gpg
 [commit]
   gpgsign = true
   verbose = true
@@ -89,8 +89,8 @@
 [filter "media"]
   clean = git-media-clean %f
   smudge = git-media-smudge %f
-[url "git@github.com:"]
-  insteadOf = github:
+[url "https://github.com/"]
+  insteadOf = gh:
 [alias]
 
 # days worked on it
@@ -206,6 +206,10 @@
   rc = rebase --continue
   rs = rebase --skip
 
+# Submodules
+  sfe = submodule foreach
+  sfr = submodule foreach --recursive
+
 # Return to a given commit SHA
   return = reset --hard
 
@@ -249,7 +253,7 @@
 # changelog
   # changelog = log --abbrev-commit --date=relative --pretty=format:'* %H: %s (by %an)'
   changelog = log --abbrev-commit --pretty=format:'* %H - %s'
-  
+
 # see what you did this day
   today = log --decorate --graph --since=midnight --author='Jonas Hermsmeier' --oneline
 
