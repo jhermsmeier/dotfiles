@@ -75,7 +75,7 @@ set -g -x LANG "en_US"
 
 # Homebrew needs this, because it fails when doing
 # a couple more searches and/or installs in a short amount of time
-set -g -x HOMEBREW_GITHUB_API_TOKEN "826535d7bed76417af6092f1d0e08739885c9fb3"
+set -g -x HOMEBREW_GITHUB_API_TOKEN ""
 set -g -x HOMEBREW_MAKE_JOBS 1
 set -g -x HOMEBREW_VERBOSE 1
 set -g -x HOMEBREW_NO_ANALYTICS 1
