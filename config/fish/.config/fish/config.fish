@@ -12,26 +12,26 @@ set fish_greeting ""
 
 # Fix for color theme resetting to something weird
 # after restarts in fish 2.4.0
-set -U fish_color_autosuggestion 555
-set -U fish_color_command 005fd7
-set -U fish_color_comment 990000
-set -U fish_color_cwd green
-set -U fish_color_cwd_root red
-set -U fish_color_end 009900
-set -U fish_color_error ff0000
-set -U fish_color_escape 'bryellow'  '--bold'
-set -U fish_color_history_current --bold
-set -U fish_color_host normal
-set -U fish_color_match --background=brblue
-set -U fish_color_normal normal
-set -U fish_color_operator bryellow
-set -U fish_color_param 00afff
-set -U fish_color_quote 999900
-set -U fish_color_redirection 00afff
-set -U fish_color_search_match 'bryellow'  '--background=brblack'
-set -U fish_color_selection 'white'  '--bold'  '--background=brblack'
-set -U fish_color_user brgreen
-set -U fish_color_valid_path --underline 
+# set -U fish_color_autosuggestion 555
+# set -U fish_color_command 005fd7
+# set -U fish_color_comment 990000
+# set -U fish_color_cwd green
+# set -U fish_color_cwd_root red
+# set -U fish_color_end 009900
+# set -U fish_color_error ff0000
+# set -U fish_color_escape 'bryellow'  '--bold'
+# set -U fish_color_history_current --bold
+# set -U fish_color_host normal
+# set -U fish_color_match --background=brblue
+# set -U fish_color_normal normal
+# set -U fish_color_operator bryellow
+# set -U fish_color_param 00afff
+# set -U fish_color_quote 999900
+# set -U fish_color_redirection 00afff
+# set -U fish_color_search_match 'bryellow'  '--background=brblack'
+# set -U fish_color_selection 'white'  '--bold'  '--background=brblack'
+# set -U fish_color_user brgreen
+# set -U fish_color_valid_path --underline
 
 # Enable detailed git status in prompt
 set -x __fish_git_prompt_show_informative_status 'true'
@@ -52,9 +52,11 @@ set -x __fish_git_prompt_color 'yellow'
 
 # Homebrew sbin
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/curl/bin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $fish_user_paths
 
 # GNU Core utils
-set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
+# set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 # set MANPATH "/usr/local/opt/coreutils/libexec/gnuman" $MANPATH
 
 # Support building against Homebrewed OpenSSL
@@ -73,23 +75,12 @@ set -g -x LANG "en_US"
 
 # Homebrew needs this, because it fails when doing
 # a couple more searches and/or installs in a short amount of time
-set -g -x HOMEBREW_GITHUB_API_TOKEN ""
+set -g -x HOMEBREW_GITHUB_API_TOKEN "826535d7bed76417af6092f1d0e08739885c9fb3"
 set -g -x HOMEBREW_MAKE_JOBS 1
 set -g -x HOMEBREW_VERBOSE 1
 set -g -x HOMEBREW_NO_ANALYTICS 1
 
-set -g -x AWS_ACCESS_KEY_ID ""
-set -g -x AWS_SECRET_ACCESS_KEY ""
-
 set -g -x LESS "-RFX --SILENT"
-
-# rbenv
-if status --is-interactive
-  . (rbenv init -|psub)
-end
-
-# python virtualenv (virtualfish)
-eval (python -m virtualfish auto_activation global_requirements)
 
 # Easier navigation: .., ..., ~ and -
 alias .. "cd .."
@@ -131,7 +122,10 @@ alias hosts 'sudo vim /etc/hosts'
 alias pyg 'pygmentize -O style=manni -f console256 -g'
 
 # IP addresses
-alias ip "dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipv4 "dig +short -4 myip.opendns.com a @resolver1.opendns.com"
+alias ipv6 "dig +short -6 myip.opendns.com aaaa @resolver1.ipv6-sandbox.opendns.com"
+# alias ipv4 "curl -q --ipv4 https://diagnostic.opendns.com/myip"
+# alias ipv6 "curl -q --ipv6 https://diagnostic.opendns.com/myip"
 alias localip "ipconfig getifaddr $1"
 alias ips "ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
@@ -140,12 +134,6 @@ alias ips "ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Flush Directory Service cache
 alias flushdns "dscacheutil -flushcache"
-
-# File size
-alias fs "stat -f \"%z bytes\""
-
-# Screensaver
-alias saver 'open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app'
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
