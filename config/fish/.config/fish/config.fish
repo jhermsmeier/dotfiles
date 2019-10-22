@@ -50,6 +50,9 @@ set -x __fish_git_prompt_color 'yellow'
 # eval (docker-machine env --shell fish default)
 # eval (gdircolors -c ~/.dircolors)
 
+# Go binaries
+set -g fish_user_paths $HOME"/go/bin/" $fish_user_paths
+
 # Homebrew sbin
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/curl/bin" $fish_user_paths
