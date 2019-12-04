@@ -1,3 +1,5 @@
+set -g -x GPG_TTY (tty)
+
 # Hook up SSH_AGENT, GPG_AGENT and ENV vars
 # N_ (keychain id_rsa 1A0CEE9F)
 if status --is-interactive
