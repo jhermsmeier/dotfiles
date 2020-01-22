@@ -9,6 +9,7 @@
   autocrlf = false
   safecrlf = false
   pager = less --tabs=2 -RFX
+  precomposeUnicode = true
 [gpg]
   program = gpg
 [commit]
