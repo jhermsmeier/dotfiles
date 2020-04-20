@@ -36,31 +36,28 @@ set fish_greeting ""
 # set -U fish_color_valid_path --underline
 
 # Enable detailed git status in prompt
-set -x __fish_git_prompt_show_informative_status 'true'
-set -x __fish_git_prompt_showupstream 'true'
-set -x __fish_git_prompt_showstashstate 'true'
-# set -x __fish_git_prompt_showuntrackedfiles 'true'
-# set -x __fish_git_prompt_showcolorhints 'true'
-set -x __fish_git_prompt_char_stateseparator '|'
-set -x __fish_git_prompt_char_cleanstate '○'
-set -x __fish_git_prompt_char_dirtystate '*'
-set -x __fish_git_prompt_char_stagedstate '+'
-set -x __fish_git_prompt_char_stashstate '$'
-set -x __fish_git_prompt_char_invalidstate '×'
-set -x __fish_git_prompt_char_upstream_prefix ' '
-set -x __fish_git_prompt_char_upstream_ahead '⇡'
-set -x __fish_git_prompt_char_upstream_behind '⇣'
-set -x __fish_git_prompt_char_upstream_diverged '<>'
-set -x __fish_git_prompt_char_upstream_equal '='
-# set -x __fish_git_prompt_char_untrackedfiles '…'
-set -x __fish_git_prompt_color 'yellow'
-set -x __fish_git_prompt_color_prefix 'black'
-set -x __fish_git_prompt_color_suffix 'black'
-# set -x __fish_git_prompt_color_untrackedfiles '#696969'
-# set -x __fish_git_prompt_color_branch 'yellow'
-
-# eval (docker-machine env --shell fish default)
-# eval (gdircolors --c-shell ~/.dircolors)
+set -g __fish_git_prompt_show_informative_status 'true'
+set -g __fish_git_prompt_showupstream 'true'
+set -g __fish_git_prompt_showstashstate 'true'
+# set -g __fish_git_prompt_showuntrackedfiles 'true'
+# set -g __fish_git_prompt_showcolorhints 'true'
+set -g __fish_git_prompt_char_stateseparator '|'
+set -g __fish_git_prompt_char_cleanstate '○'
+set -g __fish_git_prompt_char_dirtystate '*'
+set -g __fish_git_prompt_char_stagedstate '+'
+set -g __fish_git_prompt_char_stashstate '$'
+set -g __fish_git_prompt_char_invalidstate '×'
+set -g __fish_git_prompt_char_upstream_prefix ' '
+set -g __fish_git_prompt_char_upstream_ahead '⇡'
+set -g __fish_git_prompt_char_upstream_behind '⇣'
+set -g __fish_git_prompt_char_upstream_diverged '<>'
+set -g __fish_git_prompt_char_upstream_equal '='
+# set -g __fish_git_prompt_char_untrackedfiles '…'
+set -g __fish_git_prompt_color 'yellow'
+set -g __fish_git_prompt_color_prefix 'black'
+set -g __fish_git_prompt_color_suffix 'black'
+# set -g __fish_git_prompt_color_untrackedfiles '#696969'
+# set -g __fish_git_prompt_color_branch 'yellow'
 
 # Go binaries
 set -g fish_user_paths $HOME"/go/bin/" $fish_user_paths
