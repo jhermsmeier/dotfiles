@@ -1,35 +1,38 @@
+# name: Classic + Vcs
+# author: Lily Ballard
+
 function fish_prompt --description 'Write out the prompt'
 
-	set -l last_status $status
+  set -l last_pipestatus $pipestatus
+  set -l normal (set_color normal)
+  set -l color_cwd $fish_color_cwd
+  set -l suffix ' >'
+  set -l date (set_color 696969)'['(date "+%H:%M:%S")']'
 
-	if not set -q __fish_prompt_normal
-		set -g __fish_prompt_normal (set_color normal)
-	end
+  # Color the prompt differently when we're root
+  if contains -- $USER root toor
+    if set -q fish_color_cwd_root
+      set color_cwd $fish_color_cwd_root
+    end
+    set suffix '#'
+  end
 
-	# Time
-	set_color 696969
-  printf '\n[%s] ' (date "+%H:%M:%S")
-  set_color normal
-  # printf '\n'
+  # If we're running via SSH, change the host color.
+  set -l color_host $fish_color_host
+  if set -q SSH_TTY
+    set color_host $fish_color_host_remote
+  end
 
-	# PWD
-	set_color $fish_color_cwd
-	echo -n (prompt_pwd)
+  # if set -q NODE_VERSION
+  #   set node_version (set_color 339933) '⬡ ' (set_color 66cc33) $NODE_VERSION
+  # end
 
-	if set -q VIRTUAL_ENV
-    echo -n -s " " (set_color blue) "(python:" (basename "$VIRTUAL_ENV") ")" (set_color normal) ""
-	end
+  # if set -q VIRTUAL_ENV
+  #   set -l python (set_color blue) '(⺒' (basename "$VIRTUAL_ENV") ')'
+  # end
 
-	set_color normal
-	echo -n -s (__fish_git_prompt) " "
-	set_color normal
-
-	if not test $last_status -eq 0
-		set_color $fish_color_error
-	end
-
-  printf '\n'
-	echo -n ' > '
-	set_color normal
+  # Write pipestatus
+  set -l prompt_status (__fish_print_pipestatus ' [' ']' '|' (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
+  echo -e -n -s "\n" $date ' ' (set_color $color_cwd) (prompt_pwd) (fish_vcs_prompt) $normal $prompt_status (set_color $color_host) $suffix ' '
 
 end
