@@ -39,11 +39,10 @@ set -g fish_user_paths $HOME"/go/bin" $fish_user_paths
 # Rust Cargo binaries
 set -g fish_user_paths $HOME"/.cargo/bin" $fish_user_paths
 
-# Homebrew sbin
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+# Homebrew
 set -g fish_user_paths "/usr/local/opt/curl/bin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $fish_user_paths
-set -g fish_user_paths "/usr/local/opt/ccache/libexec" $fish_user_paths
+# set -g fish_user_paths "/usr/local/opt/ccache/libexec" $fish_user_paths
 
 # GNU Core utils
 # set PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
