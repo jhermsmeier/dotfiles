@@ -321,3 +321,5 @@
 
 # show a list of authors (ranked by number of commits)
   authors = !"git shortlog -sne --no-merges -w1024,0,0 | cut -c 8-"
+[init]
+	defaultBranch = main
