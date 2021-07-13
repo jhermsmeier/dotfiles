@@ -29,3 +29,6 @@ defaults write org.chromium.Chromium BrowserNetworkTimeQueriesEnabled -bool fals
 defaults write org.chromium.Chromium BrowserSignin -int 0
 # Disable translations
 defaults write org.chromium.Chromium TranslateEnabled -bool false
+
+# Force-disable hiding parts of the URL in the address bar
+defaults write org.chromium.Chromium ShowFullUrlsInAddressBar -bool true
