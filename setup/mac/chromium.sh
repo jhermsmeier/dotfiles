@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Available settings can be found in `chrome_settings.proto` in the
-# Chromium source code: https://source.chromium.org/chromium/chromium/src/
+# Chromium source: https://source.chromium.org/chromium/chromium/src/
 
 # Disable Sec-CH-UA-* headers
 defaults write org.chromium.Chromium UserAgentClientHintsEnabled -bool false
@@ -16,9 +16,16 @@ defaults write org.chromium.Chromium NetworkPredictionOptions -integer 2
 
 # Don't share with Google (generally not necessary, as we're running custom builds, but added for completeness)
 defaults write org.chromium.Chromium SafeBrowsingProtectionLevel -integer 0
+defaults write org.chromium.Chromium SafeBrowsingExtendedReportingEnabled -bool false
 defaults write org.chromium.Chromium MetricsReportingEnabled -bool false
 defaults write org.chromium.Chromium PasswordLeakDetectionEnabled -bool false
 defaults write org.chromium.Chromium SyncDisabled -bool true
+defaults write org.chromium.Chromium SpellCheckServiceEnabled -bool false
+defaults write org.chromium.Chromium CloudPrintSubmitEnabled -bool false
+defaults write org.chromium.Chromium DataCompressionProxyEnabled -bool false
+defaults write org.chromium.Chromium BrowserNetworkTimeQueriesEnabled -bool false
 
 # Disable Sign-in with Chrome
-defaults write org.chromium.Chromium BrowserSignin -bool false
+defaults write org.chromium.Chromium BrowserSignin -int 0
+# Disable translations
+defaults write org.chromium.Chromium TranslateEnabled -bool false
